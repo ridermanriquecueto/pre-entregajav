@@ -1,7 +1,6 @@
 package com.techlab.pedidos;
 
 import com.techlab.productos.Producto;
-import com.techlab.ColorConsole;
 
 public class LineaPedido {
     private Producto producto;
@@ -12,6 +11,7 @@ public class LineaPedido {
         this.cantidad = cantidad;
     }
 
+    // Getters
     public Producto getProducto() {
         return producto;
     }
@@ -20,22 +20,19 @@ public class LineaPedido {
         return cantidad;
     }
 
-    // ********* NUEVO MÉTODO AÑADIDO PARA LA CORRECCIÓN *********
+    // Setter para la cantidad (útil si se ajusta una línea de pedido)
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    // *********************************************************
 
-    public double getSubtotal() {
+    // Calcula el subtotal de esta línea de pedido
+    public double calcularSubtotal() {
         return producto.getPrecio() * cantidad;
     }
 
     @Override
     public String toString() {
-        // Alineación y colores para cada línea de pedido
-        return String.format("%s%-25s%s x%s%-3d%s = %s$%-9.2f%s",
-            ColorConsole.WHITE, producto.getNombre(),
-            ColorConsole.YELLOW, cantidad,
-            ColorConsole.WHITE, ColorConsole.GREEN, getSubtotal(), ColorConsole.RESET);
+        // Formato para mostrar una línea de pedido
+        return "  - " + producto.getNombre() + " (x" + cantidad + ") - Subtotal: $" + String.format("%.2f", calcularSubtotal());
     }
 }

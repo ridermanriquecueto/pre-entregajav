@@ -1,22 +1,20 @@
 package com.techlab.productos;
 
-import com.techlab.ColorConsole; // Importar la clase ColorConsole
-
 public class Producto {
-    private static int contadorId = 0;
+    private static int nextId = 1; // Contador estático para IDs únicos
     private int id;
     private String nombre;
     private double precio;
     private int stock;
 
     public Producto(String nombre, double precio, int stock) {
-        this.id = ++contadorId; // ID autogenerado
+        this.id = nextId++; // Asigna un ID único y lo incrementa
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
     }
 
-    // Getters
+    // Getters para acceder a las propiedades del producto
     public int getId() {
         return id;
     }
@@ -33,7 +31,7 @@ public class Producto {
         return stock;
     }
 
-    // Setters
+    // Setters para modificar las propiedades del producto
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -43,22 +41,12 @@ public class Producto {
     }
 
     public void setStock(int stock) {
-        // Validación básica para stock no negativo
-        if (stock >= 0) {
-            this.stock = stock;
-        } else {
-            System.err.println(ColorConsole.RED + "Advertencia: El stock no puede ser negativo. Se mantuvo el valor anterior." + ColorConsole.RESET);
-        }
+        this.stock = stock;
     }
 
     @Override
     public String toString() {
-        // Formato para listar un producto individualmente
-        return String.format("%sID: %s%-4d%s | %sNombre: %s%-20s%s | %sPrecio: %s$%-9.2f%s | %sStock: %s%-5d%s",
-            ColorConsole.CYAN, ColorConsole.WHITE, id, ColorConsole.CYAN,
-            ColorConsole.CYAN, ColorConsole.WHITE, nombre, ColorConsole.CYAN,
-            ColorConsole.CYAN, ColorConsole.YELLOW, precio, ColorConsole.CYAN,
-            ColorConsole.CYAN, (stock <= 5 && stock > 0 ? ColorConsole.YELLOW : (stock == 0 ? ColorConsole.RED : ColorConsole.GREEN)), stock, ColorConsole.RESET);
-            // El stock cambia de color según la cantidad (verde, amarillo, rojo)
+        // Formato para mostrar el producto en una línea
+        return "ID: " + id + ", Nombre: " + nombre + ", Precio: $" + String.format("%.2f", precio) + ", Stock: " + stock;
     }
 }
