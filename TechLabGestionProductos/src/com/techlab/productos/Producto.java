@@ -1,20 +1,20 @@
 package com.techlab.productos;
 
 public class Producto {
-    private static int nextId = 1; // Contador estático para IDs únicos
+    private static int nextId = 1; 
     private int id;
     private String nombre;
     private double precio;
     private int stock;
 
     public Producto(String nombre, double precio, int stock) {
-        this.id = nextId++; // Asigna un ID único y lo incrementa
+        this.id = nextId++; 
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
     }
 
-    // Getters para acceder a las propiedades del producto
+    
     public int getId() {
         return id;
     }
@@ -31,7 +31,7 @@ public class Producto {
         return stock;
     }
 
-    // Setters para modificar las propiedades del producto
+   
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -46,7 +46,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        // Formato para mostrar el producto en una línea
+       
         return "ID: " + id + ", Nombre: " + nombre + ", Precio: $" + String.format("%.2f", precio) + ", Stock: " + stock;
     }
 }

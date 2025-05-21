@@ -5,21 +5,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale; // Importar Locale para formato numérico consistente
+import java.util.Locale; 
 
 public class Pedido {
-    private static int nextId = 1; // Contador estático para IDs únicos de pedidos
+    private static int nextId = 1; 
     private int id;
     private LocalDateTime fechaHora;
-    private List<LineaPedido> lineas; // Lista de líneas de pedido (productos y cantidades)
+    private List<LineaPedido> lineas; 
 
     public Pedido() {
-        this.id = nextId++; // Asigna un ID único y lo incrementa
-        this.fechaHora = LocalDateTime.now(); // Establece la fecha y hora actuales
+        this.id = nextId++; 
+        this.fechaHora = LocalDateTime.now(); 
         this.lineas = new ArrayList<>();
     }
 
-    // Getters
+ 
     public int getId() {
         return id;
     }
@@ -29,20 +29,20 @@ public class Pedido {
     }
 
     public List<LineaPedido> getLineas() {
-        // Retorna una lista inmodificable para proteger las líneas del pedido
+        
         return Collections.unmodifiableList(lineas);
     }
 
-    // Agrega una línea de pedido a la lista
+  
     public void agregarLinea(LineaPedido linea) {
         this.lineas.add(linea);
     }
 
-    // Calcula el total del pedido sumando los subtotales de cada línea
+ 
     public double calcularTotal() {
         double total = 0;
         for (LineaPedido linea : lineas) {
-            total += linea.calcularSubtotal(); // Llama al método calcularSubtotal() de LineaPedido
+            total += linea.calcularSubtotal(); 
         }
         return total;
     }
